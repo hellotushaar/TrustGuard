@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrustGuard - Educate and Protect Against Deepfakes</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-shield-alt"></i>
+                <span>TrustGuard</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#" onclick="showPage('dashboard')" class="nav-link">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="#" onclick="showPage('knowledge-hub')" class="nav-link">
+                    <i class="fas fa-book"></i> Knowledge Hub
+                </a>
+                <a href="#" onclick="showPage('ctfs')" class="nav-link">
+                    <i class="fas fa-flag"></i> CTFs
+                </a>
+                <a href="#" onclick="showPage('communities')" class="nav-link">
+                    <i class="fas fa-users"></i> Communities
+                </a>
+                <a href="#" onclick="showPage('smart-suggest')" class="nav-link">
+                    <i class="fas fa-robot"></i> Smart Suggest
+                </a>
+                <a href="#" onclick="showPage('admin')" class="nav-link">
+                    <i class="fas fa-cog"></i> Admin
+                </a>
+                <a href="#" onclick="signOut()" class="nav-link sign-out">
+                    <i class="fas fa-sign-out-alt"></i> Sign Out
+                </a>
+            </div>
+            <div class="notifications">
+                <i class="fas fa-bell" onclick="toggleNotifications()"></i>
+                <div id="notificationDropdown" class="notification-dropdown">
+                    <div class="notification-item">New CTF available!</div>
+                    <div class="notification-item">Community post liked</div>
+                    <div class="notification-item">Badge earned: Security Expert</div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Landing Page -->
+    <div id="landing-page" class="page">
+        <div class="hero-section">
+            <div class="hero-content">
+                <div class="hero-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h1>TrustGuard</h1>
+                <p class="hero-tagline">Educate and Protect Against Deepfakes</p>
+                <p class="hero-description">
+                    Join our community to learn about deepfake detection, participate in challenges, 
+                    and stay protected in the digital age.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="showSignIn()">
+                        <i class="fas fa-user"></i> Sign In
+                    </button>
+                    <button class="btn btn-secondary" onclick="showPage('deepfake-detection')">
+                        <i class="fas fa-search"></i> Try Detection (Guest)
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sign In Form -->
+        <div id="signin-form" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="hideSignIn()">&times;</span>
+                <h2>Sign In to TrustGuard</h2>
+                <form onsubmit="signIn(event)">
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sign In</button>
+                    <p class="sign-up-link">Don't have an account? <a href="#" onclick="alert('Sign up functionality would be implemented here')">Sign Up</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboard" class="page">
+        <div class="page-header">
+            <h1>Dashboard</h1>
+            <p>Welcome back! Here's your activity overview.</p>
+        </div>
+        
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <h3><i class="fas fa-bell"></i> Recent Notifications</h3>
+                <ul class="notification-list">
+                    <li><i class="fas fa-flag"></i> New CTF "Advanced Deepfake Detection" available!</li>
+                    <li><i class="fas fa-trophy"></i> You earned the "Security Expert" badge!</li>
+                    <li><i class="fas fa-users"></i> 5 new members joined "Deepfake Fighters" community</li>
+                    <li><i class="fas fa-book"></i> New article: "AI Ethics in 2025" published</li>
+                    <li><i class="fas fa-heart"></i> Your post in "CTF Pros" received 10 likes</li>
+                </ul>
+            </div>
+
+            <div class="dashboard-card">
+                <h3><i class="fas fa-brain"></i> Knowledge Hub Progress</h3>
+                <div class="progress-item">
+                    <span>Deepfakes 101</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 85%"></div>
+                    </div>
+                    <span>85%</span>
+                </div>
+                <div class="progress-item">
+                    <span>AI Ethics</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 60%"></div>
+                    </div>
+                    <span>60%</span>
+                </div>
+                <div class="progress-item">
+                    <span>Detection Techniques</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 40%"></div>
+                    </div>
+                    <span>40%</span>
+                </div>
+                <div class="progress-item">
+                    <span>Cybersecurity Basics</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 90%"></div>
+                    </div>
+                    <span>90%</span>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <h3><i class="fas fa-flag"></i> CTF Overview</h3>
+                <div class="ctf-cards">
+                    <div class="mini-card">
+                        <h4>Beginner Detection</h4>
+                        <p>Score: 850/1000</p>
+                        <span class="badge gold">Gold</span>
+                    </div>
+                    <div class="mini-card">
+                        <h4>Advanced Analysis</h4>
+                        <p>Score: 720/1000</p>
+                        <span class="badge silver">Silver</span>
+                    </div>
+                    <div class="mini-card">
+                        <h4>Expert Challenge</h4>
+                        <p>In Progress</p>
+                        <span class="badge in-progress">50%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <h3><i class="fas fa-users"></i> Communities</h3>
+                <div class="community-summary">
+                    <div class="community-item">
+                        <span class="community-name">Deepfake Fighters</span>
+                        <span class="community-activity">15 new posts</span>
+                    </div>
+                    <div class="community-item">
+                        <span class="community-name">CTF Pros</span>
+                        <span class="community-activity">8 active discussions</span>
+                    </div>
+                    <div class="community-item">
+                        <span class="community-name">AI Ethics Hub</span>
+                        <span class="community-activity">3 new articles</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <h3><i class="fas fa-trophy"></i> Personal Progress</h3>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">12</div>
+                        <div class="stat-label">CTFs Completed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">Badges Earned</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">Topics Covered</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">25</div>
+                        <div class="stat-label">Community Posts</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <h3><i class="fas fa-search"></i> Deepfake Detection</h3>
+                <p style="color: #666; margin-bottom: 1.5rem;">Upload and analyze files for potential deepfake content using our advanced detection tools.</p>
+                
+                <div class="detection-quick-upload">
+                    <div class="upload-mini" onclick="document.getElementById('dashboard-file-input').click()">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <span>Quick Upload</span>
+                    </div>
+                    <input type="file" id="dashboard-file-input" accept="video/*,audio/*" onchange="dashboardAnalyzeFile()" style="display: none;">
+                </div>
+                
+                <div id="dashboard-analysis-result" class="mini-result" style="display: none;">
+                    <div id="dashboard-result-content"></div>
+                </div>
+                
+                <div style="margin-top: 1rem;">
+                    <button class="btn btn-primary btn-small" onclick="showPage('deepfake-detection')">
+                        <i class="fas fa-microscope"></i> Advanced Detection
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Knowledge Hub -->
+    <div id="knowledge-hub" class="page">
+        <div class="page-header">
+            <h1>Knowledge Hub</h1>
+            <p>Explore topics and expand your knowledge about deepfakes and cybersecurity.</p>
+        </div>
+        
+        <div class="search-section">
+            <div class="search-bar">
+                <input type="text" id="knowledge-search" placeholder="Search topics, articles, tutorials...">
+                <button onclick="searchKnowledge()"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="filters">
+                <button class="filter-btn active" onclick="filterKnowledge('all')">All</button>
+                <button class="filter-btn" onclick="filterKnowledge('deepfakes')">Deepfakes</button>
+                <button class="filter-btn" onclick="filterKnowledge('ai')">AI</button>
+                <button class="filter-btn" onclick="filterKnowledge('security')">Security</button>
+                <button class="filter-btn" onclick="filterKnowledge('ethics')">Ethics</button>
+            </div>
+        </div>
+
+        <div id="knowledge-results" class="content-grid">
+            <!-- Content will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <!-- CTFs -->
+    <div id="ctfs" class="page">
+        <div class="page-header">
+            <h1>Capture The Flag Challenges</h1>
+            <p>Test your skills with hands-on cybersecurity challenges.</p>
+        </div>
+        
+        <div class="search-section">
+            <div class="search-bar">
+                <input type="text" id="ctf-search" placeholder="Search CTF challenges...">
+                <button onclick="searchCTFs()"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="filters">
+                <button class="filter-btn active" onclick="filterCTFs('all')">All</button>
+                <button class="filter-btn" onclick="filterCTFs('beginner')">Beginner</button>
+                <button class="filter-btn" onclick="filterCTFs('intermediate')">Intermediate</button>
+                <button class="filter-btn" onclick="filterCTFs('advanced')">Advanced</button>
+                <button class="filter-btn" onclick="filterCTFs('expert')">Expert</button>
+            </div>
+        </div>
+
+        <div id="ctf-results" class="content-grid">
+            <!-- Content will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Communities -->
+    <div id="communities" class="page">
+        <div class="page-header">
+            <h1>Communities</h1>
+            <p>Connect with like-minded individuals and share knowledge.</p>
+        </div>
+        
+        <div class="community-tabs">
+            <button class="tab-btn active" onclick="showCommunityTab('all')">All Communities</button>
+            <button class="tab-btn" onclick="showCommunityTab('joined')">My Communities</button>
+        </div>
+
+        <div id="community-results" class="content-grid">
+            <!-- Content will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Smart Suggest -->
+    <div id="smart-suggest" class="page">
+        <div class="page-header">
+            <h1>Smart Suggest - Ask TrustGuard</h1>
+            <p>Get personalized recommendations based on your interests and progress.</p>
+        </div>
+        
+        <div class="chat-container">
+            <div id="chat-messages" class="chat-messages">
+                <div class="message ai-message">
+                    <div class="message-content">
+                        <i class="fas fa-robot"></i>
+                        <span>Hello! I'm TrustGuard AI. I can help you find CTFs, suggest learning topics, recommend communities, and answer questions about deepfakes and cybersecurity. What would you like to know?</span>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-input-container">
+                <input type="text" id="chat-input" placeholder="Ask me anything about CTFs, topics, or communities...">
+                <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin -->
+    <div id="admin" class="page">
+        <div class="page-header">
+            <h1>Account Settings</h1>
+            <p>Manage your profile and preferences.</p>
+        </div>
+        
+        <div class="admin-content">
+            <div class="admin-section">
+                <h3>Profile Information</h3>
+                <form onsubmit="saveProfile(event)" class="admin-form">
+                    <div class="form-group">
+                        <label for="profile-username">Username:</label>
+                        <input type="text" id="profile-username" value="user123">
+                    </div>
+                    <div class="form-group">
+                        <label for="profile-email">Email:</label>
+                        <input type="email" id="profile-email" value="user@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="profile-password">New Password:</label>
+                        <input type="password" id="profile-password" placeholder="Leave blank to keep current password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </form>
+            </div>
+
+            <div class="admin-section">
+                <h3>Interests & Preferences</h3>
+                <div class="preferences-grid">
+                    <label class="checkbox-item">
+                        <input type="checkbox" checked> Deepfake Detection
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" checked> CTF Challenges
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox"> AI Ethics
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" checked> Cybersecurity
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox"> Machine Learning
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox"> Privacy Protection
+                    </label>
+                </div>
+                <button onclick="savePreferences()" class="btn btn-primary">Save Preferences</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Deepfake Detection -->
+    <div id="deepfake-detection" class="page">
+        <div class="page-header">
+            <h1>Deepfake Detection</h1>
+            <p>Upload a video or audio file to analyze for potential deepfake content.</p>
+        </div>
+        
+        <!-- Back to Dashboard Button (only for signed-in users) -->
+        <div id="back-to-dashboard" class="back-navigation" style="display: none;">
+            <button class="btn btn-secondary" onclick="showPage('dashboard')">
+                <i class="fas fa-arrow-left"></i> Back to Dashboard
+            </button>
+        </div>
+        
+        <div class="detection-container">
+            <div class="upload-section">
+                <div class="upload-area" onclick="document.getElementById('file-input').click()">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <h3>Upload File for Analysis</h3>
+                    <p>Drag and drop or click to select a video or audio file</p>
+                    <p class="file-info">Supported formats: MP4, AVI, MP3, WAV</p>
+                </div>
+                <input type="file" id="file-input" accept="video/*,audio/*" onchange="analyzeFile()" style="display: none;">
+            </div>
+
+            <div id="analysis-result" class="analysis-result" style="display: none;">
+                <div class="result-content">
+                    <div class="result-header">
+                        <i class="fas fa-search"></i>
+                        <h3>Analysis Complete</h3>
+                    </div>
+                    <div id="result-details" class="result-details">
+                        <!-- Results will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <div id="suggestions-section" class="suggestions-section" style="display: none;">
+                <h3>Recommended for You</h3>
+                <div class="suggestion-cards">
+                    <!-- Guest suggestions -->
+                    <div class="suggestion-card guest-suggestion">
+                        <h4><i class="fas fa-flag"></i> Try Deepfake Detection CTF</h4>
+                        <p>Practice your detection skills with guided challenges</p>
+                        <button onclick="alert('Sign in to access CTFs')" class="btn btn-primary">Try Now</button>
+                    </div>
+                    <div class="suggestion-card guest-suggestion">
+                        <h4><i class="fas fa-users"></i> Join Detection Community</h4>
+                        <p>Connect with experts and learn detection techniques</p>
+                        <button onclick="alert('Sign in to join communities')" class="btn btn-primary">Join</button>
+                    </div>
+                    
+                    <!-- Signed-in user suggestions -->
+                    <div class="suggestion-card user-suggestion" style="display: none;">
+                        <h4><i class="fas fa-flag"></i> Try Related CTFs</h4>
+                        <p>Practice your detection skills with guided challenges</p>
+                        <button onclick="showPage('ctfs')" class="btn btn-primary">Browse CTFs</button>
+                    </div>
+                    <div class="suggestion-card user-suggestion" style="display: none;">
+                        <h4><i class="fas fa-users"></i> Join Detection Community</h4>
+                        <p>Connect with experts and learn detection techniques</p>
+                        <button onclick="showPage('communities')" class="btn btn-primary">View Communities</button>
+                    </div>
+                    
+                    <!-- Common suggestion for both -->
+                    <div class="suggestion-card">
+                        <h4><i class="fas fa-book"></i> Learn More</h4>
+                        <p>Explore our knowledge base for detection methods</p>
+                        <button onclick="showPage('knowledge-hub')" class="btn btn-secondary">Explore</button>
+                    </div>
+                </div>
+                
+                <!-- Guest signup prompt -->
+                <div class="signup-prompt guest-suggestion">
+                    <p>Want full access to all features? <button onclick="showSignIn()" class="btn btn-primary">Sign Up Now</button></p>
+                </div>
+                
+                <!-- Signed-in user back button -->
+                <div class="user-suggestion" style="display: none; text-align: center; margin-top: 1rem;">
+                    <button onclick="showPage('dashboard')" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Back to Dashboard
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
