@@ -4,466 +4,379 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TrustGuard - Educate and Protect Against Deepfakes</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav id="navbar" class="navbar">
-        <div class="nav-container">
-            <div class="nav-brand">
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="header-container">
+            <div class="brand">
                 <i class="fas fa-shield-alt"></i>
                 <span>TrustGuard</span>
             </div>
-            <div class="nav-menu">
-                <a href="#" onclick="showPage('dashboard')" class="nav-link">
-                    <i class="fas fa-home"></i> Dashboard
-                </a>
-                <a href="#" onclick="showPage('knowledge-hub')" class="nav-link">
-                    <i class="fas fa-book"></i> Knowledge Hub
-                </a>
-                <a href="#" onclick="showPage('ctfs')" class="nav-link">
-                    <i class="fas fa-flag"></i> CTFs
-                </a>
-                <a href="#" onclick="showPage('communities')" class="nav-link">
-                    <i class="fas fa-users"></i> Communities
-                </a>
-                <a href="#" onclick="showPage('smart-suggest')" class="nav-link">
-                    <i class="fas fa-robot"></i> Smart Suggest
-                </a>
-                <a href="#" onclick="showPage('admin')" class="nav-link">
-                    <i class="fas fa-cog"></i> Admin
-                </a>
-                <a href="#" onclick="signOut()" class="nav-link sign-out">
-                    <i class="fas fa-sign-out-alt"></i> Sign Out
-                </a>
-            </div>
-            <div class="notifications">
-                <i class="fas fa-bell" onclick="toggleNotifications()"></i>
-                <div id="notificationDropdown" class="notification-dropdown">
-                    <div class="notification-item">New CTF available!</div>
-                    <div class="notification-item">Community post liked</div>
-                    <div class="notification-item">Badge earned: Security Expert</div>
-                </div>
+            <nav class="nav-links">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="dashboard.html" class="nav-link">Try Detection</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+            <div class="auth-buttons">
+                <button class="btn btn-outline" onclick="openModal('login')">Login</button>
+                <button class="btn btn-primary" onclick="openModal('signup')">Sign Up</button>
             </div>
         </div>
-    </nav>
+    </header>
 
-    <!-- Landing Page -->
-    <div id="landing-page" class="page">
-        <div class="hero-section">
-            <div class="hero-content">
-                <div class="hero-icon">
-                    <i class="fas fa-shield-alt"></i>
+    <!-- Homepage Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h1>Protect Yourself from Deepfakes</h1>
+                    <p class="hero-tagline">Advanced AI Detection & Education Platform</p>
+                    <p class="hero-description">
+                        TrustGuard empowers users to identify, understand, and protect against deepfake technology 
+                        through cutting-edge detection tools and comprehensive educational resources.
+                    </p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" onclick="openModal('signup')">
+                            <i class="fas fa-rocket"></i> Get Started
+                        </button>
+                        <a href="dashboard.html" class="btn btn-secondary">
+                            <i class="fas fa-search"></i> Try Detection
+                        </a>
+                    </div>
                 </div>
-                <h1>TrustGuard</h1>
-                <p class="hero-tagline">Educate and Protect Against Deepfakes</p>
-                <p class="hero-description">
-                    Join our community to learn about deepfake detection, participate in challenges, 
-                    and stay protected in the digital age.
-                </p>
-                <div class="hero-buttons">
-                    <button class="btn btn-primary" onclick="showSignIn()">
-                        <i class="fas fa-user"></i> Sign In
-                    </button>
-                    <button class="btn btn-secondary" onclick="showPage('deepfake-detection')">
-                        <i class="fas fa-search"></i> Try Detection (Guest)
-                    </button>
+                <div class="hero-visual">
+                    <div class="feature-preview">
+                        <div class="preview-card">
+                            <i class="fas fa-search"></i>
+                            <h3>AI Detection</h3>
+                            <p>Advanced algorithms detect deepfakes with 99.2% accuracy</p>
+                        </div>
+                        <div class="preview-card">
+                            <i class="fas fa-graduation-cap"></i>
+                            <h3>Learn & Practice</h3>
+                            <p>Interactive tutorials and CTF challenges</p>
+                        </div>
+                        <div class="preview-card">
+                            <i class="fas fa-users"></i>
+                            <h3>Community</h3>
+                            <p>Connect with security experts worldwide</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- Sign In Form -->
-        <div id="signin-form" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="hideSignIn()">&times;</span>
-                <h2>Sign In to TrustGuard</h2>
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>About TrustGuard</h2>
+                    <p>Leading the fight against deepfake misinformation</p>
+                </div>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>Our Mission</h3>
+                        <p>In an era where artificial intelligence can create convincingly fake videos and images, TrustGuard stands as your first line of defense. We combine cutting-edge detection technology with comprehensive education to empower individuals and organizations against deepfake threats.</p>
+                        
+                        <h3>Why TrustGuard?</h3>
+                        <ul>
+                            <li><strong>Advanced AI Detection:</strong> Our proprietary algorithms achieve 99.2% accuracy in identifying deepfakes</li>
+                            <li><strong>Educational Excellence:</strong> Comprehensive learning resources from basic concepts to advanced techniques</li>
+                            <li><strong>Community-Driven:</strong> Connect with cybersecurity experts and researchers worldwide</li>
+                            <li><strong>Practical Training:</strong> Hands-on CTF challenges to test and improve your skills</li>
+                        </ul>
+                    </div>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">99.2%</div>
+                            <div class="stat-label">Detection Accuracy</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">50K+</div>
+                            <div class="stat-label">Files Analyzed</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">1,200+</div>
+                            <div class="stat-label">Active Users</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Comprehensive Deepfake Protection</h2>
+                    <p>Everything you need to stay safe in the digital age</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-illustration">
+                            <img src="assets/illustrations/detection-illustration.svg" alt="Advanced Detection" />
+                        </div>
+                        <h3>Advanced Detection</h3>
+                        <p>State-of-the-art AI algorithms analyze media files to detect deepfakes with industry-leading accuracy.</p>
+                        <ul>
+                            <li>99.2% Detection Accuracy</li>
+                            <li>Real-time Analysis</li>
+                            <li>Multiple File Formats</li>
+                            <li>Batch Processing</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-illustration">
+                            <img src="assets/illustrations/knowledge-illustration.svg" alt="Knowledge Hub" />
+                        </div>
+                        <h3>Knowledge Hub</h3>
+                        <p>Comprehensive educational resources to understand deepfake technology and protection methods.</p>
+                        <ul>
+                            <li>Interactive Tutorials</li>
+                            <li>Latest Research Papers</li>
+                            <li>Best Practices Guide</li>
+                            <li>Video Explanations</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-illustration">
+                            <img src="assets/illustrations/ctf-illustration.svg" alt="CTF Challenges" />
+                        </div>
+                        <h3>CTF Challenges</h3>
+                        <p>Hands-on capture-the-flag challenges to test and improve your deepfake detection skills.</p>
+                        <ul>
+                            <li>Beginner to Expert Levels</li>
+                            <li>Real-world Scenarios</li>
+                            <li>Skill Validation</li>
+                            <li>Achievement System</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Expert Community</h3>
+                        <p>Connect with cybersecurity professionals and researchers in the fight against deepfakes.</p>
+                        <ul>
+                            <li>Expert Networks</li>
+                            <li>Knowledge Sharing</li>
+                            <li>Collaboration Tools</li>
+                            <li>Discussion Forums</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section class="how-it-works-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>How TrustGuard Works</h2>
+                    <p>Simple steps to protect yourself from deepfakes</p>
+                </div>
+                <div class="steps-grid">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h3>Upload Media</h3>
+                        <p>Upload your video or image file through our secure interface. We support all major formats including MP4, AVI, JPG, PNG, and more.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h3>AI Analysis</h3>
+                        <p>Our advanced AI algorithms analyze your media using multiple detection techniques including facial analysis, temporal consistency checks, and artifact detection.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h3>Get Results</h3>
+                        <p>Receive detailed analysis results with confidence scores, visual highlights of suspicious areas, and recommendations for further verification.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <h3>Learn & Improve</h3>
+                        <p>Access educational resources to understand the analysis, participate in community discussions, and enhance your detection skills through CTF challenges.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Get in Touch</h2>
+                    <p>Have questions? We're here to help</p>
+                </div>
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3>Contact Information</h3>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Email</strong>
+                                <p>support@trustguard.ai</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <strong>Phone</strong>
+                                <p>+1 (555) 123-4567</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>Address</strong>
+                                <p>123 Security Street<br>Cyber City, CC 12345</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <h3>Send us a Message</h3>
+                        <form onsubmit="submitContactForm(event)">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>TrustGuard</span>
+                    </div>
+                    <p>Protecting digital integrity through advanced AI detection and education.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Product</h3>
+                    <ul>
+                        <li><a href="dashboard.html">Detection Tool</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#api">API Access</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#documentation">Documentation</a></li>
+                        <li><a href="#research">Research Papers</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#help">Help Center</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#careers">Careers</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TrustGuard. All rights reserved. | Protecting digital integrity since 2025.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Authentication Modal -->
+    <div id="auth-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Welcome to TrustGuard</h2>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            
+            <!-- Login Form -->
+            <div id="login-form" class="auth-form">
+                <h3>Sign In</h3>
                 <form onsubmit="signIn(event)">
                     <div class="form-group">
-                        <label for="username">Username:</label>
-                        <input type="text" id="username" required>
+                        <label for="login-username">Username or Email</label>
+                        <input type="text" id="login-username" required>
                     </div>
                     <div class="form-group">
-                        <label for="password">Password:</label>
-                        <input type="password" id="password" required>
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Sign In</button>
-                    <p class="sign-up-link">Don't have an account? <a href="#" onclick="alert('Sign up functionality would be implemented here')">Sign Up</a></p>
+                    <button type="submit" class="btn btn-primary btn-full">Sign In</button>
                 </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- Dashboard -->
-    <div id="dashboard" class="page">
-        <div class="page-header">
-            <h1>Dashboard</h1>
-            <p>Welcome back! Here's your activity overview.</p>
-        </div>
-        
-        <div class="dashboard-grid">
-            <div class="dashboard-card">
-                <h3><i class="fas fa-bell"></i> Recent Notifications</h3>
-                <ul class="notification-list">
-                    <li><i class="fas fa-flag"></i> New CTF "Advanced Deepfake Detection" available!</li>
-                    <li><i class="fas fa-trophy"></i> You earned the "Security Expert" badge!</li>
-                    <li><i class="fas fa-users"></i> 5 new members joined "Deepfake Fighters" community</li>
-                    <li><i class="fas fa-book"></i> New article: "AI Ethics in 2025" published</li>
-                    <li><i class="fas fa-heart"></i> Your post in "CTF Pros" received 10 likes</li>
-                </ul>
-            </div>
-
-            <div class="dashboard-card">
-                <h3><i class="fas fa-brain"></i> Knowledge Hub Progress</h3>
-                <div class="progress-item">
-                    <span>Deepfakes 101</span>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 85%"></div>
-                    </div>
-                    <span>85%</span>
-                </div>
-                <div class="progress-item">
-                    <span>AI Ethics</span>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 60%"></div>
-                    </div>
-                    <span>60%</span>
-                </div>
-                <div class="progress-item">
-                    <span>Detection Techniques</span>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 40%"></div>
-                    </div>
-                    <span>40%</span>
-                </div>
-                <div class="progress-item">
-                    <span>Cybersecurity Basics</span>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 90%"></div>
-                    </div>
-                    <span>90%</span>
+                <div class="auth-footer">
+                    <p>Don't have an account? <a href="#" onclick="switchToSignup()">Sign Up</a></p>
+                    <p><a href="#" onclick="alert('Password reset functionality would be implemented here')">Forgot Password?</a></p>
                 </div>
             </div>
-
-            <div class="dashboard-card">
-                <h3><i class="fas fa-flag"></i> CTF Overview</h3>
-                <div class="ctf-cards">
-                    <div class="mini-card">
-                        <h4>Beginner Detection</h4>
-                        <p>Score: 850/1000</p>
-                        <span class="badge gold">Gold</span>
-                    </div>
-                    <div class="mini-card">
-                        <h4>Advanced Analysis</h4>
-                        <p>Score: 720/1000</p>
-                        <span class="badge silver">Silver</span>
-                    </div>
-                    <div class="mini-card">
-                        <h4>Expert Challenge</h4>
-                        <p>In Progress</p>
-                        <span class="badge in-progress">50%</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="dashboard-card">
-                <h3><i class="fas fa-users"></i> Communities</h3>
-                <div class="community-summary">
-                    <div class="community-item">
-                        <span class="community-name">Deepfake Fighters</span>
-                        <span class="community-activity">15 new posts</span>
-                    </div>
-                    <div class="community-item">
-                        <span class="community-name">CTF Pros</span>
-                        <span class="community-activity">8 active discussions</span>
-                    </div>
-                    <div class="community-item">
-                        <span class="community-name">AI Ethics Hub</span>
-                        <span class="community-activity">3 new articles</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="dashboard-card">
-                <h3><i class="fas fa-trophy"></i> Personal Progress</h3>
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <div class="stat-number">12</div>
-                        <div class="stat-label">CTFs Completed</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">5</div>
-                        <div class="stat-label">Badges Earned</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">8</div>
-                        <div class="stat-label">Topics Covered</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">25</div>
-                        <div class="stat-label">Community Posts</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="dashboard-card">
-                <h3><i class="fas fa-search"></i> Deepfake Detection</h3>
-                <p style="color: #666; margin-bottom: 1.5rem;">Upload and analyze files for potential deepfake content using our advanced detection tools.</p>
-                
-                <div class="detection-quick-upload">
-                    <div class="upload-mini" onclick="document.getElementById('dashboard-file-input').click()">
-                        <i class="fas fa-cloud-upload-alt"></i>
-                        <span>Quick Upload</span>
-                    </div>
-                    <input type="file" id="dashboard-file-input" accept="video/*,audio/*" onchange="dashboardAnalyzeFile()" style="display: none;">
-                </div>
-                
-                <div id="dashboard-analysis-result" class="mini-result" style="display: none;">
-                    <div id="dashboard-result-content"></div>
-                </div>
-                
-                <div style="margin-top: 1rem;">
-                    <button class="btn btn-primary btn-small" onclick="showPage('deepfake-detection')">
-                        <i class="fas fa-microscope"></i> Advanced Detection
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Knowledge Hub -->
-    <div id="knowledge-hub" class="page">
-        <div class="page-header">
-            <h1>Knowledge Hub</h1>
-            <p>Explore topics and expand your knowledge about deepfakes and cybersecurity.</p>
-        </div>
-        
-        <div class="search-section">
-            <div class="search-bar">
-                <input type="text" id="knowledge-search" placeholder="Search topics, articles, tutorials...">
-                <button onclick="searchKnowledge()"><i class="fas fa-search"></i></button>
-            </div>
-            <div class="filters">
-                <button class="filter-btn active" onclick="filterKnowledge('all')">All</button>
-                <button class="filter-btn" onclick="filterKnowledge('deepfakes')">Deepfakes</button>
-                <button class="filter-btn" onclick="filterKnowledge('ai')">AI</button>
-                <button class="filter-btn" onclick="filterKnowledge('security')">Security</button>
-                <button class="filter-btn" onclick="filterKnowledge('ethics')">Ethics</button>
-            </div>
-        </div>
-
-        <div id="knowledge-results" class="content-grid">
-            <!-- Content will be populated by JavaScript -->
-        </div>
-    </div>
-
-    <!-- CTFs -->
-    <div id="ctfs" class="page">
-        <div class="page-header">
-            <h1>Capture The Flag Challenges</h1>
-            <p>Test your skills with hands-on cybersecurity challenges.</p>
-        </div>
-        
-        <div class="search-section">
-            <div class="search-bar">
-                <input type="text" id="ctf-search" placeholder="Search CTF challenges...">
-                <button onclick="searchCTFs()"><i class="fas fa-search"></i></button>
-            </div>
-            <div class="filters">
-                <button class="filter-btn active" onclick="filterCTFs('all')">All</button>
-                <button class="filter-btn" onclick="filterCTFs('beginner')">Beginner</button>
-                <button class="filter-btn" onclick="filterCTFs('intermediate')">Intermediate</button>
-                <button class="filter-btn" onclick="filterCTFs('advanced')">Advanced</button>
-                <button class="filter-btn" onclick="filterCTFs('expert')">Expert</button>
-            </div>
-        </div>
-
-        <div id="ctf-results" class="content-grid">
-            <!-- Content will be populated by JavaScript -->
-        </div>
-    </div>
-
-    <!-- Communities -->
-    <div id="communities" class="page">
-        <div class="page-header">
-            <h1>Communities</h1>
-            <p>Connect with like-minded individuals and share knowledge.</p>
-        </div>
-        
-        <div class="community-tabs">
-            <button class="tab-btn active" onclick="showCommunityTab('all')">All Communities</button>
-            <button class="tab-btn" onclick="showCommunityTab('joined')">My Communities</button>
-        </div>
-
-        <div id="community-results" class="content-grid">
-            <!-- Content will be populated by JavaScript -->
-        </div>
-    </div>
-
-    <!-- Smart Suggest -->
-    <div id="smart-suggest" class="page">
-        <div class="page-header">
-            <h1>Smart Suggest - Ask TrustGuard</h1>
-            <p>Get personalized recommendations based on your interests and progress.</p>
-        </div>
-        
-        <div class="chat-container">
-            <div id="chat-messages" class="chat-messages">
-                <div class="message ai-message">
-                    <div class="message-content">
-                        <i class="fas fa-robot"></i>
-                        <span>Hello! I'm TrustGuard AI. I can help you find CTFs, suggest learning topics, recommend communities, and answer questions about deepfakes and cybersecurity. What would you like to know?</span>
-                    </div>
-                </div>
-            </div>
-            <div class="chat-input-container">
-                <input type="text" id="chat-input" placeholder="Ask me anything about CTFs, topics, or communities...">
-                <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Admin -->
-    <div id="admin" class="page">
-        <div class="page-header">
-            <h1>Account Settings</h1>
-            <p>Manage your profile and preferences.</p>
-        </div>
-        
-        <div class="admin-content">
-            <div class="admin-section">
-                <h3>Profile Information</h3>
-                <form onsubmit="saveProfile(event)" class="admin-form">
+            
+            <!-- Signup Form -->
+            <div id="signup-form" class="auth-form hidden">
+                <h3>Create Account</h3>
+                <form onsubmit="signUp(event)">
                     <div class="form-group">
-                        <label for="profile-username">Username:</label>
-                        <input type="text" id="profile-username" value="user123">
+                        <label for="signup-username">Username</label>
+                        <input type="text" id="signup-username" required>
                     </div>
                     <div class="form-group">
-                        <label for="profile-email">Email:</label>
-                        <input type="email" id="profile-email" value="user@example.com">
+                        <label for="signup-email">Email</label>
+                        <input type="email" id="signup-email" required>
                     </div>
                     <div class="form-group">
-                        <label for="profile-password">New Password:</label>
-                        <input type="password" id="profile-password" placeholder="Leave blank to keep current password">
+                        <label for="signup-password">Password</label>
+                        <input type="password" id="signup-password" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <div class="form-group">
+                        <label for="signup-confirm-password">Confirm Password</label>
+                        <input type="password" id="signup-confirm-password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Create Account</button>
                 </form>
-            </div>
-
-            <div class="admin-section">
-                <h3>Interests & Preferences</h3>
-                <div class="preferences-grid">
-                    <label class="checkbox-item">
-                        <input type="checkbox" checked> Deepfake Detection
-                    </label>
-                    <label class="checkbox-item">
-                        <input type="checkbox" checked> CTF Challenges
-                    </label>
-                    <label class="checkbox-item">
-                        <input type="checkbox"> AI Ethics
-                    </label>
-                    <label class="checkbox-item">
-                        <input type="checkbox" checked> Cybersecurity
-                    </label>
-                    <label class="checkbox-item">
-                        <input type="checkbox"> Machine Learning
-                    </label>
-                    <label class="checkbox-item">
-                        <input type="checkbox"> Privacy Protection
-                    </label>
-                </div>
-                <button onclick="savePreferences()" class="btn btn-primary">Save Preferences</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Deepfake Detection -->
-    <div id="deepfake-detection" class="page">
-        <div class="page-header">
-            <h1>Deepfake Detection</h1>
-            <p>Upload a video or audio file to analyze for potential deepfake content.</p>
-        </div>
-        
-        <!-- Back to Dashboard Button (only for signed-in users) -->
-        <div id="back-to-dashboard" class="back-navigation" style="display: none;">
-            <button class="btn btn-secondary" onclick="showPage('dashboard')">
-                <i class="fas fa-arrow-left"></i> Back to Dashboard
-            </button>
-        </div>
-        
-        <div class="detection-container">
-            <div class="upload-section">
-                <div class="upload-area" onclick="document.getElementById('file-input').click()">
-                    <i class="fas fa-cloud-upload-alt"></i>
-                    <h3>Upload File for Analysis</h3>
-                    <p>Drag and drop or click to select a video or audio file</p>
-                    <p class="file-info">Supported formats: MP4, AVI, MP3, WAV</p>
-                </div>
-                <input type="file" id="file-input" accept="video/*,audio/*" onchange="analyzeFile()" style="display: none;">
-            </div>
-
-            <div id="analysis-result" class="analysis-result" style="display: none;">
-                <div class="result-content">
-                    <div class="result-header">
-                        <i class="fas fa-search"></i>
-                        <h3>Analysis Complete</h3>
-                    </div>
-                    <div id="result-details" class="result-details">
-                        <!-- Results will be populated by JavaScript -->
-                    </div>
-                </div>
-            </div>
-
-            <div id="suggestions-section" class="suggestions-section" style="display: none;">
-                <h3>Recommended for You</h3>
-                <div class="suggestion-cards">
-                    <!-- Guest suggestions -->
-                    <div class="suggestion-card guest-suggestion">
-                        <h4><i class="fas fa-flag"></i> Try Deepfake Detection CTF</h4>
-                        <p>Practice your detection skills with guided challenges</p>
-                        <button onclick="alert('Sign in to access CTFs')" class="btn btn-primary">Try Now</button>
-                    </div>
-                    <div class="suggestion-card guest-suggestion">
-                        <h4><i class="fas fa-users"></i> Join Detection Community</h4>
-                        <p>Connect with experts and learn detection techniques</p>
-                        <button onclick="alert('Sign in to join communities')" class="btn btn-primary">Join</button>
-                    </div>
-                    
-                    <!-- Signed-in user suggestions -->
-                    <div class="suggestion-card user-suggestion" style="display: none;">
-                        <h4><i class="fas fa-flag"></i> Try Related CTFs</h4>
-                        <p>Practice your detection skills with guided challenges</p>
-                        <button onclick="showPage('ctfs')" class="btn btn-primary">Browse CTFs</button>
-                    </div>
-                    <div class="suggestion-card user-suggestion" style="display: none;">
-                        <h4><i class="fas fa-users"></i> Join Detection Community</h4>
-                        <p>Connect with experts and learn detection techniques</p>
-                        <button onclick="showPage('communities')" class="btn btn-primary">View Communities</button>
-                    </div>
-                    
-                    <!-- Common suggestion for both -->
-                    <div class="suggestion-card">
-                        <h4><i class="fas fa-book"></i> Learn More</h4>
-                        <p>Explore our knowledge base for detection methods</p>
-                        <button onclick="showPage('knowledge-hub')" class="btn btn-secondary">Explore</button>
-                    </div>
-                </div>
-                
-                <!-- Guest signup prompt -->
-                <div class="signup-prompt guest-suggestion">
-                    <p>Want full access to all features? <button onclick="showSignIn()" class="btn btn-primary">Sign Up Now</button></p>
-                </div>
-                
-                <!-- Signed-in user back button -->
-                <div class="user-suggestion" style="display: none; text-align: center; margin-top: 1rem;">
-                    <button onclick="showPage('dashboard')" class="btn btn-secondary">
-                        <i class="fas fa-arrow-left"></i> Back to Dashboard
-                    </button>
+                <div class="auth-footer">
+                    <p>Already have an account? <a href="#" onclick="switchToLogin()">Sign In</a></p>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="homepage.js"></script>
 </body>
 </html>

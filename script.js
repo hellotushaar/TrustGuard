@@ -316,15 +316,16 @@ function signIn(event) {
 }
 
 function signOut() {
-    localStorage.removeItem('isSignedIn');
-    localStorage.removeItem('currentUser');
+    try {
+        localStorage.removeItem('isSignedIn');
+        localStorage.removeItem('currentUser');
+    } catch (e) {}
     appState.isSignedIn = false;
     appState.currentUser = null;
-    
-    showPage('landing-page');
-    document.getElementById('navbar').style.display = 'none';
-    
+
     alert('You have been signed out successfully.');
+    // Redirect to homepage for a single login/signup experience
+    window.location.replace('index.html');
 }
 
 // Notification Functions
