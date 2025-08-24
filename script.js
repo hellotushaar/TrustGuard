@@ -67,7 +67,7 @@ const mockData = {
             popularity: 78
         }
     ],
-    
+
     ctfChallenges: [
         {
             id: 1,
@@ -130,7 +130,7 @@ const mockData = {
             estimatedTime: "45 min"
         }
     ],
-    
+
     communities: [
         {
             id: 1,
@@ -208,7 +208,7 @@ const mockData = {
 };
 
 // Initialization
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     initializeApp();
 });
 
@@ -217,11 +217,11 @@ function initializeApp() {
     const isSignedIn = localStorage.getItem('isSignedIn') === 'true';
     const joinedCommunities = JSON.parse(localStorage.getItem('joinedCommunities') || '[]');
     const userPreferences = JSON.parse(localStorage.getItem('userPreferences') || '[]');
-    
+
     appState.isSignedIn = isSignedIn;
     appState.joinedCommunities = joinedCommunities;
     appState.userPreferences = userPreferences;
-    
+
     if (isSignedIn) {
         showPage('dashboard');
         document.getElementById('navbar').style.display = 'block';
@@ -229,7 +229,7 @@ function initializeApp() {
         showPage('landing-page');
         document.getElementById('navbar').style.display = 'none';
     }
-    
+
     // Initialize content
     populateKnowledgeHub();
     populateCTFs();
@@ -244,7 +244,7 @@ function showPage(pageId) {
         page.classList.remove('active');
         page.style.display = 'none';
     });
-    
+
     // Show selected page
     const targetPage = document.getElementById(pageId);
     if (targetPage) {
@@ -252,14 +252,14 @@ function showPage(pageId) {
         targetPage.style.display = 'block';
         appState.currentPage = pageId;
     }
-    
+
     // Handle special cases
     if (pageId === 'landing-page' || pageId === 'deepfake-detection') {
         document.getElementById('navbar').style.display = 'none';
     } else if (appState.isSignedIn) {
         document.getElementById('navbar').style.display = 'block';
     }
-    
+
     // Show/hide back to dashboard button for deepfake detection page
     const backButton = document.getElementById('back-to-dashboard');
     if (backButton) {
@@ -269,12 +269,12 @@ function showPage(pageId) {
             backButton.style.display = 'none';
         }
     }
-    
+
     // Show/hide appropriate suggestions for deepfake detection page
     if (pageId === 'deepfake-detection') {
         const guestSuggestions = document.querySelectorAll('.guest-suggestion');
         const userSuggestions = document.querySelectorAll('.user-suggestion');
-        
+
         if (appState.isSignedIn) {
             guestSuggestions.forEach(el => el.style.display = 'none');
             userSuggestions.forEach(el => el.style.display = 'block');
@@ -298,18 +298,18 @@ function signIn(event) {
     event.preventDefault();
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
-    
+
     if (username && password) {
         // Simulate authentication
         localStorage.setItem('isSignedIn', 'true');
         localStorage.setItem('currentUser', username);
         appState.isSignedIn = true;
         appState.currentUser = username;
-        
+
         hideSignIn();
         showPage('dashboard');
         document.getElementById('navbar').style.display = 'block';
-        
+
         // Show success message
         alert('Welcome to TrustGuard! You have successfully signed in.');
     }
@@ -319,7 +319,7 @@ function signOut() {
     try {
         localStorage.removeItem('isSignedIn');
         localStorage.removeItem('currentUser');
-    } catch (e) {}
+    } catch (e) { }
     appState.isSignedIn = false;
     appState.currentUser = null;
 
@@ -338,9 +338,9 @@ function toggleNotifications() {
 function populateKnowledgeHub() {
     const container = document.getElementById('knowledge-results');
     container.innerHTML = '';
-    
+
     const topics = mockData.knowledgeTopics.sort((a, b) => b.popularity - a.popularity);
-    
+
     topics.forEach(topic => {
         const card = createKnowledgeCard(topic);
         container.appendChild(card);
@@ -378,18 +378,18 @@ function searchKnowledge() {
     const query = document.getElementById('knowledge-search').value.toLowerCase();
     const container = document.getElementById('knowledge-results');
     container.innerHTML = '';
-    
-    const filteredTopics = mockData.knowledgeTopics.filter(topic => 
-        topic.title.toLowerCase().includes(query) || 
+
+    const filteredTopics = mockData.knowledgeTopics.filter(topic =>
+        topic.title.toLowerCase().includes(query) ||
         topic.description.toLowerCase().includes(query) ||
         topic.category.toLowerCase().includes(query)
     );
-    
+
     if (filteredTopics.length === 0) {
         container.innerHTML = '<p style="text-align: center; color: #666; padding: 2rem;">No topics found matching your search.</p>';
         return;
     }
-    
+
     filteredTopics.forEach(topic => {
         const card = createKnowledgeCard(topic);
         container.appendChild(card);
@@ -400,14 +400,14 @@ function filterKnowledge(category) {
     // Update active filter button
     document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
     event.target.classList.add('active');
-    
+
     const container = document.getElementById('knowledge-results');
     container.innerHTML = '';
-    
-    const filteredTopics = category === 'all' 
-        ? mockData.knowledgeTopics 
+
+    const filteredTopics = category === 'all'
+        ? mockData.knowledgeTopics
         : mockData.knowledgeTopics.filter(topic => topic.category === category);
-    
+
     filteredTopics.sort((a, b) => b.popularity - a.popularity).forEach(topic => {
         const card = createKnowledgeCard(topic);
         container.appendChild(card);
@@ -432,9 +432,9 @@ function bookmarkTopic(topicId) {
 function populateCTFs() {
     const container = document.getElementById('ctf-results');
     container.innerHTML = '';
-    
+
     const ctfs = mockData.ctfChallenges.sort((a, b) => b.participants - a.participants);
-    
+
     ctfs.forEach(ctf => {
         const card = createCTFCard(ctf);
         container.appendChild(card);
@@ -475,18 +475,18 @@ function searchCTFs() {
     const query = document.getElementById('ctf-search').value.toLowerCase();
     const container = document.getElementById('ctf-results');
     container.innerHTML = '';
-    
-    const filteredCTFs = mockData.ctfChallenges.filter(ctf => 
-        ctf.title.toLowerCase().includes(query) || 
+
+    const filteredCTFs = mockData.ctfChallenges.filter(ctf =>
+        ctf.title.toLowerCase().includes(query) ||
         ctf.description.toLowerCase().includes(query) ||
         ctf.category.toLowerCase().includes(query)
     );
-    
+
     if (filteredCTFs.length === 0) {
         container.innerHTML = '<p style="text-align: center; color: #666; padding: 2rem;">No CTF challenges found matching your search.</p>';
         return;
     }
-    
+
     filteredCTFs.forEach(ctf => {
         const card = createCTFCard(ctf);
         container.appendChild(card);
@@ -497,14 +497,14 @@ function filterCTFs(category) {
     // Update active filter button
     document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
     event.target.classList.add('active');
-    
+
     const container = document.getElementById('ctf-results');
     container.innerHTML = '';
-    
-    const filteredCTFs = category === 'all' 
-        ? mockData.ctfChallenges 
+
+    const filteredCTFs = category === 'all'
+        ? mockData.ctfChallenges
         : mockData.ctfChallenges.filter(ctf => ctf.category === category);
-    
+
     filteredCTFs.sort((a, b) => b.participants - a.participants).forEach(ctf => {
         const card = createCTFCard(ctf);
         container.appendChild(card);
@@ -514,7 +514,7 @@ function filterCTFs(category) {
 function playCTF(ctfId) {
     const ctf = mockData.ctfChallenges.find(c => c.id === ctfId);
     if (!ctf) return;
-    
+
     // Simple CTF simulation
     const questions = [
         {
@@ -533,26 +533,26 @@ function playCTF(ctfId) {
             correct: 1
         }
     ];
-    
+
     let score = 0;
     let currentQuestion = 0;
-    
+
     function askQuestion() {
         if (currentQuestion >= questions.length) {
             const finalScore = Math.round((score / questions.length) * ctf.maxScore);
             alert(`CTF Complete!\n\nYour Score: ${finalScore}/${ctf.maxScore}\nQuestions Correct: ${score}/${questions.length}\n\nGreat job! Your score has been recorded.`);
             return;
         }
-        
+
         const q = questions[currentQuestion];
         const answer = prompt(
             `${ctf.title} - Question ${currentQuestion + 1}/${questions.length}\n\n${q.question}\n\n` +
             q.options.map((opt, idx) => `${idx + 1}. ${opt}`).join('\n') +
             '\n\nEnter your answer (1-4):'
         );
-        
+
         if (answer === null) return; // User cancelled
-        
+
         const answerIndex = parseInt(answer) - 1;
         if (answerIndex === q.correct) {
             score++;
@@ -560,11 +560,11 @@ function playCTF(ctfId) {
         } else {
             alert(`Incorrect. The correct answer was: ${q.options[q.correct]}`);
         }
-        
+
         currentQuestion++;
         askQuestion();
     }
-    
+
     if (confirm(`Start "${ctf.title}"?\n\nThis CTF contains ${questions.length} questions and will test your knowledge about deepfake detection.`)) {
         askQuestion();
     }
@@ -586,24 +586,58 @@ function showCommunityTab(tab) {
     // Update active tab
     document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
     event.target.classList.add('active');
-    
+
     appState.activeTab = tab;
     const container = document.getElementById('community-results');
     container.innerHTML = '';
-    
+
     let communitiesToShow = mockData.communities;
-    
+
     if (tab === 'joined') {
-        communitiesToShow = mockData.communities.filter(community => 
+        communitiesToShow = mockData.communities.filter(community =>
             appState.joinedCommunities.includes(community.id)
         );
-        
+
         if (communitiesToShow.length === 0) {
-            container.innerHTML = '<p style="text-align: center; color: #666; padding: 2rem;">You haven\'t joined any communities yet. Check out the "All Communities" tab to find communities to join!</p>';
+            // Remove grid class and center the card
+            container.classList.remove('content-grid');
+            container.innerHTML = `
+            <div style="
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+                width: 100%;
+                margin-top: 2rem;
+            ">
+                <div style="
+                    background: #fff;
+                    border-radius: 12px;
+                    box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+                    padding: 2rem 2.5rem;
+                    text-align: center;
+                    color: #333;
+                    font-size: 1.1rem;
+                    max-width: 420px;
+                    width: 100%;
+                ">
+                    You haven't joined any communities yet. Check out the <strong>"All Communities"</strong> tab to find communities to join!
+                </div>
+            </div>
+        `;
             return;
+        } else {
+            // Restore grid class for normal cards
+            if (!container.classList.contains('content-grid')) {
+                container.classList.add('content-grid');
+            }
+        }
+    } else {
+        // Always restore grid class for other tabs
+        if (!container.classList.contains('content-grid')) {
+            container.classList.add('content-grid');
         }
     }
-    
+
     communitiesToShow.sort((a, b) => b.members - a.members).forEach(community => {
         const card = createCommunityCard(community);
         container.appendChild(card);
@@ -614,7 +648,7 @@ function createCommunityCard(community) {
     const card = document.createElement('div');
     card.className = 'content-card';
     const isJoined = appState.joinedCommunities.includes(community.id);
-    
+
     card.innerHTML = `
         <div class="card-header">
             <h3>${community.name}</h3>
@@ -627,20 +661,20 @@ function createCommunityCard(community) {
                 <span><i class="fas fa-comments"></i> ${community.recentPosts} recent posts</span>
             </div>
             <div class="card-actions">
-                ${isJoined 
-                    ? `<button class="btn btn-secondary btn-small" onclick="leaveCommunity(${community.id})">
+                ${isJoined
+            ? `<button class="btn btn-secondary btn-small" onclick="leaveCommunity(${community.id})">
                          <i class="fas fa-user-minus"></i> Leave
                        </button>
                        <button class="btn btn-primary btn-small" onclick="viewCommunity(${community.id})">
                          <i class="fas fa-eye"></i> View
                        </button>`
-                    : `<button class="btn btn-primary btn-small" onclick="joinCommunity(${community.id})">
+            : `<button class="btn btn-primary btn-small" onclick="joinCommunity(${community.id})">
                          <i class="fas fa-user-plus"></i> Join
                        </button>
                        <button class="btn btn-secondary btn-small" onclick="viewCommunity(${community.id})">
                          <i class="fas fa-eye"></i> Preview
                        </button>`
-                }
+        }
             </div>
         </div>
     `;
@@ -650,13 +684,13 @@ function createCommunityCard(community) {
 function joinCommunity(communityId) {
     const community = mockData.communities.find(c => c.id === communityId);
     if (!community) return;
-    
+
     if (!appState.joinedCommunities.includes(communityId)) {
         appState.joinedCommunities.push(communityId);
         localStorage.setItem('joinedCommunities', JSON.stringify(appState.joinedCommunities));
-        
+
         alert(`Successfully joined "${community.name}"!\n\nYou can now participate in discussions and access exclusive content.`);
-        
+
         // Refresh the current view
         populateCommunities();
     }
@@ -665,13 +699,13 @@ function joinCommunity(communityId) {
 function leaveCommunity(communityId) {
     const community = mockData.communities.find(c => c.id === communityId);
     if (!community) return;
-    
+
     if (confirm(`Are you sure you want to leave "${community.name}"?`)) {
         appState.joinedCommunities = appState.joinedCommunities.filter(id => id !== communityId);
         localStorage.setItem('joinedCommunities', JSON.stringify(appState.joinedCommunities));
-        
+
         alert(`You have left "${community.name}".`);
-        
+
         // Refresh the current view
         populateCommunities();
     }
@@ -689,15 +723,15 @@ function viewCommunity(communityId) {
 function sendMessage() {
     const input = document.getElementById('chat-input');
     const message = input.value.trim();
-    
+
     if (!message) return;
-    
+
     // Add user message
     addMessage(message, 'user');
-    
+
     // Clear input
     input.value = '';
-    
+
     // Simulate AI response
     setTimeout(() => {
         const response = generateAIResponse(message);
@@ -709,56 +743,56 @@ function addMessage(content, type) {
     const messagesContainer = document.getElementById('chat-messages');
     const messageDiv = document.createElement('div');
     messageDiv.className = `message ${type}-message`;
-    
+
     const icon = type === 'ai' ? 'fas fa-robot' : 'fas fa-user';
-    
+
     messageDiv.innerHTML = `
         <div class="message-content">
             <i class="${icon}"></i>
             <span>${content}</span>
         </div>
     `;
-    
+
     messagesContainer.appendChild(messageDiv);
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
 
 function generateAIResponse(message) {
     const lowerMessage = message.toLowerCase();
-    
+
     if (lowerMessage.includes('ctf') || lowerMessage.includes('challenge')) {
         return "Based on your interests, I recommend starting with our 'Deepfake Detection Challenge' for beginners. It's a great way to learn the basics! You can also try 'Social Media Investigation' if you want something more practical.";
     }
-    
+
     if (lowerMessage.includes('community') || lowerMessage.includes('join')) {
         return "Great question! For beginners, I suggest joining 'Beginner's Corner' - it's very welcoming. If you're interested in detection techniques, 'Deepfake Fighters' is very active. For ethical discussions, check out 'AI Ethics Hub'.";
     }
-    
+
     if (lowerMessage.includes('learn') || lowerMessage.includes('topic')) {
         return "Perfect! I recommend starting with 'Introduction to Deepfakes' to get the basics down. Then move on to 'Detection Techniques and Tools' for more advanced knowledge. Don't forget to explore 'AI Ethics and Responsibility' to understand the broader implications.";
     }
-    
+
     if (lowerMessage.includes('beginner') || lowerMessage.includes('start')) {
         return "Welcome! For beginners, I suggest this learning path:\n1. Read 'Introduction to Deepfakes'\n2. Try the 'Deepfake Detection Challenge' CTF\n3. Join the 'Beginner's Corner' community\n4. Explore 'Cybersecurity Best Practices'\n\nThis will give you a solid foundation!";
     }
-    
+
     if (lowerMessage.includes('advanced') || lowerMessage.includes('expert')) {
         return "For advanced users, I recommend:\n1. 'Advanced Audio Analysis' CTF\n2. 'Video Forensics CTF' for expert-level challenges\n3. Join 'Security Researchers' community\n4. Study 'Detection Techniques and Tools'\n\nThese will push your skills to the next level!";
     }
-    
+
     if (lowerMessage.includes('detection') || lowerMessage.includes('identify')) {
         return "Great focus area! For detection skills:\n1. Study 'Detection Techniques and Tools'\n2. Practice with 'Deepfake Detection Challenge'\n3. Join 'Deepfake Fighters' community\n4. Try 'Real-time Detection' CTF when ready\n\nConsistent practice is key to becoming skilled at detection!";
     }
-    
+
     // Default response
     return "I can help you find CTFs, suggest learning topics, recommend communities, and answer questions about deepfakes and cybersecurity. Try asking me about:\n- Beginner-friendly resources\n- Specific CTF challenges\n- Communities to join\n- Learning paths\n- Detection techniques\n\nWhat would you like to know more about?";
 }
 
 // Handle Enter key in chat input
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const chatInput = document.getElementById('chat-input');
     if (chatInput) {
-        chatInput.addEventListener('keypress', function(event) {
+        chatInput.addEventListener('keypress', function (event) {
             if (event.key === 'Enter') {
                 sendMessage();
             }
@@ -769,11 +803,11 @@ document.addEventListener('DOMContentLoaded', function() {
 // Admin Functions
 function saveProfile(event) {
     event.preventDefault();
-    
+
     const username = document.getElementById('profile-username').value;
     const email = document.getElementById('profile-email').value;
     const password = document.getElementById('profile-password').value;
-    
+
     // Simulate saving to localStorage
     if (username) localStorage.setItem('currentUser', username);
     if (email) localStorage.setItem('userEmail', email);
@@ -781,23 +815,23 @@ function saveProfile(event) {
         // In a real app, this would be hashed and sent to a server
         localStorage.setItem('userPasswordUpdated', 'true');
     }
-    
+
     alert('Profile updated successfully!');
 }
 
 function savePreferences() {
     const checkboxes = document.querySelectorAll('.preferences-grid input[type="checkbox"]');
     const preferences = [];
-    
+
     checkboxes.forEach((checkbox, index) => {
         if (checkbox.checked) {
             preferences.push(checkbox.parentNode.textContent.trim());
         }
     });
-    
+
     appState.userPreferences = preferences;
     localStorage.setItem('userPreferences', JSON.stringify(preferences));
-    
+
     alert('Preferences saved successfully!');
 }
 
@@ -805,28 +839,28 @@ function savePreferences() {
 function analyzeFile() {
     const fileInput = document.getElementById('file-input');
     const file = fileInput.files[0];
-    
+
     if (!file) return;
-    
+
     // Simulate file analysis
     const resultSection = document.getElementById('analysis-result');
     const suggestionsSection = document.getElementById('suggestions-section');
     const resultDetails = document.getElementById('result-details');
-    
+
     // Show loading state
     resultDetails.innerHTML = '<p><i class="fas fa-spinner fa-spin"></i> Analyzing file...</p>';
     resultSection.style.display = 'block';
-    
+
     // Simulate analysis delay
     setTimeout(() => {
         // Generate random analysis result
         const confidence = Math.random() * 100;
         const isDeepfake = confidence > 60;
-        
+
         let confidenceClass = 'low';
         let status = 'Likely Authentic';
         let statusColor = 'var(--success-green)';
-        
+
         if (confidence > 80) {
             confidenceClass = 'high';
             status = 'Likely Deepfake';
@@ -836,7 +870,7 @@ function analyzeFile() {
             status = 'Uncertain';
             statusColor = 'var(--warning-orange)';
         }
-        
+
         resultDetails.innerHTML = `
             <div style="text-align: center; margin-bottom: 1rem;">
                 <h4 style="color: ${statusColor}; margin-bottom: 0.5rem;">${status}</h4>
@@ -849,9 +883,9 @@ function analyzeFile() {
                     <div class="confidence-fill ${confidenceClass}" style="width: ${confidence}%"></div>
                 </div>
                 <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">
-                    ${confidence > 80 ? 'High confidence in detection result' : 
-                      confidence > 40 ? 'Moderate confidence - manual review recommended' : 
-                      'Low confidence - likely authentic content'}
+                    ${confidence > 80 ? 'High confidence in detection result' :
+                confidence > 40 ? 'Moderate confidence - manual review recommended' :
+                    'Low confidence - likely authentic content'}
                 </p>
             </div>
             
@@ -865,10 +899,10 @@ function analyzeFile() {
                 </ul>
             </div>
         `;
-        
+
         // Show suggestions
         suggestionsSection.style.display = 'block';
-        
+
     }, 2000);
 }
 
@@ -876,25 +910,25 @@ function analyzeFile() {
 function dashboardAnalyzeFile() {
     const fileInput = document.getElementById('dashboard-file-input');
     const file = fileInput.files[0];
-    
+
     if (!file) return;
-    
+
     // Simulate file analysis for dashboard
     const resultSection = document.getElementById('dashboard-analysis-result');
     const resultContent = document.getElementById('dashboard-result-content');
-    
+
     // Show loading state
     resultContent.innerHTML = '<p style="text-align: center;"><i class="fas fa-spinner fa-spin"></i> Analyzing...</p>';
     resultSection.style.display = 'block';
-    
+
     // Simulate analysis delay
     setTimeout(() => {
         // Generate random analysis result
         const confidence = Math.random() * 100;
-        
+
         let status = 'Authentic';
         let statusClass = 'authentic';
-        
+
         if (confidence > 75) {
             status = 'Deepfake';
             statusClass = 'deepfake';
@@ -902,7 +936,7 @@ function dashboardAnalyzeFile() {
             status = 'Suspicious';
             statusClass = 'suspicious';
         }
-        
+
         resultContent.innerHTML = `
             <div class="result-summary">
                 <div>
@@ -912,13 +946,13 @@ function dashboardAnalyzeFile() {
                 <div class="status-mini ${statusClass}">${status}</div>
             </div>
         `;
-        
+
         // Auto-hide after 10 seconds
         setTimeout(() => {
             resultSection.style.display = 'none';
             fileInput.value = ''; // Reset file input
         }, 10000);
-        
+
     }, 1500);
 }
 
@@ -932,17 +966,17 @@ function truncateText(text, maxLength) {
 }
 
 // Close notifications when clicking outside
-document.addEventListener('click', function(event) {
+document.addEventListener('click', function (event) {
     const notificationDropdown = document.getElementById('notificationDropdown');
     const notificationIcon = document.querySelector('.notifications i');
-    
+
     if (notificationDropdown && !notificationIcon.contains(event.target)) {
         notificationDropdown.style.display = 'none';
     }
 });
 
 // Close modal when clicking outside
-document.addEventListener('click', function(event) {
+document.addEventListener('click', function (event) {
     const modal = document.getElementById('signin-form');
     if (event.target === modal) {
         hideSignIn();
