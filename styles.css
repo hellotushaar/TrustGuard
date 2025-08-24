@@ -13,7 +13,7 @@ body {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
     color: var(--on-dark);
-    line-height: 1.6;
+    line-height: 1.2; /* 120% line height */
     font-weight: 400;
 }
 
@@ -249,9 +249,10 @@ a:focus-visible, .btn:focus-visible, .nav-link:focus-visible, input:focus-visibl
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
+    text-align: left; /* left align content */
     padding: 2rem;
     position: relative;
+    margin-top: -50px;
 }
 
 .hero-section::before {
@@ -276,19 +277,10 @@ a:focus-visible, .btn:focus-visible, .nav-link:focus-visible, input:focus-visibl
     border: 1px solid var(--glass-border);
     position: relative;
     z-index: 1;
-}
-
-.hero-icon {
-    margin-bottom: 2rem;
-}
-
-.hero-icon i {
-    font-size: 5rem;
-    background: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+    text-align: left; /* ensure left text alignment inside the card */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .hero-content h1 {
@@ -314,16 +306,16 @@ a:focus-visible, .btn:focus-visible, .nav-link:focus-visible, input:focus-visibl
     font-size: 1.1rem;
     color: rgba(255, 255, 255, 0.8);
     margin-bottom: 2.5rem;
-    line-height: 1.7;
+    line-height: 1.2;
     max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 0; /* left align description */
+    margin-right: 0;
 }
 
 .hero-buttons {
     display: flex;
     gap: 1rem;
-    justify-content: center;
+    justify-content: flex-start; /* align buttons to the left */
     flex-wrap: wrap;
 }
 
@@ -931,7 +923,7 @@ a:focus-visible, .btn:focus-visible, .nav-link:focus-visible, input:focus-visibl
 .card-body p {
     color: var(--medium-gray);
     margin-bottom: 1rem;
-    line-height: 1.6;
+    line-height: 1.2;
 }
 
 .card-meta {
@@ -1298,7 +1290,7 @@ a:focus-visible, .btn:focus-visible, .nav-link:focus-visible, input:focus-visibl
 .suggestion-card p {
     color: #666;
     margin-bottom: 1.5rem;
-    line-height: 1.6;
+    line-height: 1.2;
 }
 
 .signup-prompt {
@@ -1405,6 +1397,43 @@ a:focus-visible, .btn:focus-visible, .nav-link:focus-visible, input:focus-visibl
 /* (Non-breaking CSS only)   */
 /* ========================= */
 
+/* Decorative full-page background with blobs and a blur overlay */
+.page-bg {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0; /* behind everything */
+    overflow: hidden;
+}
+.bg-blob {
+    position: absolute;
+    width: 520px;
+    height: 520px;
+    filter: saturate(120%) blur(24px);
+    border-radius: 50%;
+    opacity: 0.85;
+}
+.blob-1 { background: radial-gradient(circle at 30% 30%, #ff9a9e, #fad0c4 60%); left: -120px; top: -140px; transform: rotate(12deg); }
+.blob-2 { background: radial-gradient(circle at 70% 40%, #a18cd1, #fbc2eb 60%); right: -160px; top: -60px; transform: rotate(-8deg); }
+.blob-3 { background: radial-gradient(circle at 50% 60%, #90f7ec, #0f9bff 60%); left: 40%; bottom: -180px; transform: rotate(6deg); }
+
+/* translucent blurred layer sitting above blobs but under site UI */
+.bg-blur {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(50px) saturate(70%);
+    -webkit-backdrop-filter: blur(50px) saturate(70%);
+    z-index: 1;
+}
+
+/* Make sure the main content sits above backgrounds */
+.site-content {
+    position: relative;
+    z-index: 2;
+}
+
+
 /* Layout helpers */
 .container {
     max-width: 1200px;
@@ -1426,6 +1455,88 @@ a:focus-visible, .btn:focus-visible, .nav-link:focus-visible, input:focus-visibl
     background-clip: text;
 }
 .section-header p { color: rgba(255,255,255,0.85); }
+
+/* Section header decorative accent */
+.section-header h2 {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.4rem;
+}
+.section-header h2::after {
+    content: '';
+    display: block;
+    height: 4px;
+    width: 64px;
+    margin: 8px auto 0;
+    background: linear-gradient(90deg, var(--primary-blue), var(--accent-cyan));
+    border-radius: 4px;
+    box-shadow: 0 6px 20px rgba(102,126,234,0.12);
+}
+
+/* Why Now section: subtle contrasting surface */
+.why-now-section {
+    padding: 3.5rem 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-top: 1px solid rgba(255,255,255,0.04);
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+
+/* Slight alternation between sections to improve scannability */
+.features-section { background: rgba(255,255,255,0.015); }
+.how-it-works-section { background: rgba(255,255,255,0.01); }
+.contact-section { background: linear-gradient(180deg, rgba(0,0,0,0.03), rgba(0,0,0,0.02)); }
+
+/* Feature cards: give each card a subtle tint and icon color variant */
+.features-grid .feature-card:nth-child(1) { border-color: rgba(102,126,234,0.18); background: linear-gradient(180deg, rgba(102,126,234,0.06), rgba(102,126,234,0.02)); }
+.features-grid .feature-card:nth-child(2) { border-color: rgba(118,75,162,0.16); background: linear-gradient(180deg, rgba(118,75,162,0.06), rgba(118,75,162,0.02)); }
+.features-grid .feature-card:nth-child(3) { border-color: rgba(79,188,254,0.16); background: linear-gradient(180deg, rgba(79,188,254,0.06), rgba(79,188,254,0.02)); }
+.features-grid .feature-card:nth-child(4) { border-color: rgba(72,187,120,0.14); background: linear-gradient(180deg, rgba(72,187,120,0.06), rgba(72,187,120,0.02)); }
+
+.feature-card .feature-icon i {
+    color: #fff !important;
+    background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));
+    -webkit-background-clip: padding-box;
+}
+
+/* Per-card icon color overrides */
+.features-grid .feature-card:nth-child(1) .feature-icon i { background: linear-gradient(135deg, #667eea, #4facfe); }
+.features-grid .feature-card:nth-child(2) .feature-icon i { background: linear-gradient(135deg, #a18cd1, #fbc2eb); }
+.features-grid .feature-card:nth-child(3) .feature-icon i { background: linear-gradient(135deg, #90f7ec, #0f9bff); }
+.features-grid .feature-card:nth-child(4) .feature-icon i { background: linear-gradient(135deg, #48bb78, #34d399); }
+
+/* Tighter containers for long content */
+.why-now-content p { margin-bottom: 1rem; font-size: 1.05rem; color: rgba(255,255,255,0.92); line-height: 1.2; }
+
+/* --- Light frosted feature cards (override earlier tints) --- */
+.features-grid .feature-card {
+    background: rgba(255,255,255,0.92) !important; /* light surface */
+    color: var(--dark-navy) !important;
+    backdrop-filter: blur(10px) saturate(110%);
+    -webkit-backdrop-filter: blur(10px) saturate(110%);
+    border: 1px solid rgba(15,23,42,0.06) !important;
+    box-shadow: 0 12px 30px rgba(2,6,23,0.06);
+}
+.features-grid .feature-card h3 { color: var(--dark-navy) !important; }
+.features-grid .feature-card p,
+.features-grid .feature-card li { color: var(--medium-gray) !important; }
+.features-grid .feature-card ul { margin-top: 0.75rem; padding-left: 1.1rem; }
+
+/* Keep icon visuals vibrant on the light card */
+.features-grid .feature-card .feature-icon i {
+    color: #fff !important;
+    font-size: 1.6rem;
+    padding: .6rem;
+    border-radius: 12px;
+}
+
+@media (max-width: 768px) {
+    .features-grid .feature-card { padding: 1rem; }
+}
+
+@media (max-width: 768px) {
+    .section-header h2::after { margin: 6px auto 0; width: 48px; }
+    .features-grid .feature-card { padding: 1rem; }
+}
 
 /* Buttons: outline and full width variants */
 .btn-outline {
@@ -1533,6 +1644,9 @@ a:focus-visible, .btn:focus-visible, .nav-link:focus-visible, input:focus-visibl
 .contact-section { padding: 4rem 0; }
 .contact-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
 .contact-info, .contact-form { background: rgba(255,255,255,0.1); border: 1px solid var(--glass-border); border-radius: 16px; padding: 1.5rem; color: #fff; backdrop-filter: blur(14px); }
+/* .contact-info {
+    background: rgba(255, 255, 255, 0.5) !important;
+} */
 .contact-item { display:flex; gap: .8rem; align-items:flex-start; padding: .6rem 0; }
 .contact-item i { color: var(--primary-blue); margin-top: .2rem; }
 .contact-form h3, .contact-info h3 { color: #fff; margin-bottom: .75rem; }
@@ -1542,6 +1656,27 @@ a:focus-visible, .btn:focus-visible, .nav-link:focus-visible, input:focus-visibl
     border: 2px solid rgba(0,0,0,0.1);
     border-radius: var(--border-radius-sm);
     background: rgba(255,255,255,0.8);
+}
+
+/* Map embed styling */
+.map-container {
+    width: 100%;
+    max-width: 520px;
+    height: 260px;
+    margin-top: 0.75rem;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 8px 20px rgba(2,6,23,0.06);
+}
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+@media (max-width: 768px) {
+    .map-container { max-width: 100%; height: 200px; }
 }
 .contact-form textarea:focus { outline: none; border-color: var(--primary-blue); box-shadow: 0 0 0 3px rgba(102,126,234,0.1); background: #fff; }
 

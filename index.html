@@ -12,6 +12,15 @@
 </head>
 
 <body>
+    <!-- Decorative background layers: color blobs / images + blurred overlay -->
+    <div class="page-bg" aria-hidden="true">
+        <div class="bg-blob blob-1"></div>
+        <div class="bg-blob blob-2"></div>
+        <div class="bg-blob blob-3"></div>
+        <div class="bg-blur"></div>
+    </div>
+
+    <div class="site-content">
     <!-- Header Navigation -->
     <header class="header">
         <div class="header-container">
@@ -20,7 +29,6 @@
                 <span>TrustGuard</span>
             </div>
             <nav class="nav-links">
-                <a href="#home" class="nav-link">Home</a>
                 <a href="#about" class="nav-link">About</a>
                 <a href="#features" class="nav-link">Features</a>
                 <a href="dashboard.html" class="nav-link">Try Detection</a>
@@ -39,11 +47,7 @@
         <section id="home" class="hero-section">
             <div class="hero-container">
                 <div class="hero-content">
-                    <div class="hero-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h1>Protect Yourself from Deepfakes</h1>
-                    <p class="hero-tagline">Advanced AI Detection & Education Platform</p>
+                    <h1>Advanced AI Detection & Education Platform</h1>
                     <p class="hero-description">
                         TrustGuard empowers users to identify, understand, and protect against deepfake technology
                         through cutting-edge detection tools and comprehensive educational resources.
@@ -124,6 +128,22 @@
             </div>
         </section>
 
+        <!-- Why Now Section -->
+        <section id="why-now" class="why-now-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Why Now?</h2>
+                </div>
+                <div class="why-now-content" style="max-width:900px; margin:0 auto; color: rgba(255,255,255,0.95);">
+                    <p>The digital world is at a tipping point. Every day, billions of people rely on online content for news, education, and connection—yet misinformation and deepfakes are spreading faster than ever. Young people, parents, educators, and even policymakers are often unequipped to verify what they see and share.</p>
+
+                    <p>The consequences are real: reputations destroyed, scams proliferating, communities polarized, and trust in media collapsing. The rise of generative AI has supercharged these risks, making fake content harder to detect and easier to distribute.</p>
+
+                    <p>TrustGuard emerges at the right time—with tools, training, and a global community—because the fight for truth in the digital age can’t wait.</p>
+                </div>
+            </div>
+        </section>
+
         <!-- Features Section -->
         <section id="features" class="features-section">
             <div class="container">
@@ -134,7 +154,7 @@
                 <div class="features-grid">
                     <div class="feature-card">
                         <div class="feature-icon">
-                            <i class="fas fa-users"></i>
+                            <i class="fas fa-microscope"></i>
                         </div>
                         <h3 style="color: black;">Advanced Detection</h3>
                         <p style="font-family: 'Inter', sans-serif;">State-of-the-art AI algorithms analyze media files
@@ -148,7 +168,7 @@
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">
-                            <i class="fas fa-users"></i>
+                            <i class="fas fa-book-open"></i>
                         </div>
                         <h3 style="color: black;">Knowledge Hub</h3>
                         <p style="font-family: 'Inter', sans-serif;">Comprehensive educational resources to understand
@@ -163,7 +183,7 @@
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">
-                            <i class="fas fa-users"></i>
+                            <i class="fas fa-flag-checkered"></i>
                         </div>
                         <h3 style="color: black;">CTF Challenges</h3>
                         <p style="font-family: 'Inter', sans-serif;">Hands-on capture-the-flag challenges to test and improve your deepfake detection skills.</p>
@@ -257,6 +277,16 @@
                                 <strong>Address</strong>
                                 <p>123 Security Street<br>Cyber City, CC 12345</p>
                             </div>
+                        </div>
+                        <!-- Dummy map placeholder -->
+                        <div class="map-container" aria-hidden="false">
+                            <iframe
+                                src="https://maps.google.com/maps?q=37.7749,-122.4194&z=13&output=embed"
+                                title="Location map (placeholder)"
+                                loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"
+                                allowfullscreen>
+                            </iframe>
                         </div>
                     </div>
                     <div class="contact-form">
@@ -395,6 +425,7 @@
         </div>
     </div>
 
+    </div> <!-- .site-content -->
     <script src="homepage.js"></script>
 </body>
 
