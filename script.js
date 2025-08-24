@@ -283,6 +283,12 @@ function showPage(pageId) {
             userSuggestions.forEach(el => el.style.display = 'none');
         }
     }
+    if (pageId === 'communities') {
+        showCommunityTab('all');
+        document.querySelectorAll('.community-tabs .tab-btn').forEach(btn => btn.classList.remove('active'));
+        const allBtn = document.querySelector('.community-tabs .tab-btn');
+        if (allBtn) allBtn.classList.add('active');
+    }
 }
 
 // Authentication Functions
@@ -386,9 +392,32 @@ function searchKnowledge() {
     );
 
     if (filteredTopics.length === 0) {
-        container.innerHTML = '<p style="text-align: center; color: #666; padding: 2rem;">No topics found matching your search.</p>';
+        container.innerHTML = `
+            <div style="
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+                width: 100%;
+                margin-top: 2rem;
+            ">
+                <div style="
+                    background: #fff;
+                    border-radius: 12px;
+                    box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+                    padding: 2rem 2.5rem;
+                    text-align: center;
+                    color: #333;
+                    font-size: 1.1rem;
+                    max-width: 420px;
+                    width: 100%;
+                ">
+                    No Topics Found Matching Your Search!!
+                </div>
+            </div>
+        `;
         return;
     }
+
 
     filteredTopics.forEach(topic => {
         const card = createKnowledgeCard(topic);
@@ -483,7 +512,29 @@ function searchCTFs() {
     );
 
     if (filteredCTFs.length === 0) {
-        container.innerHTML = '<p style="text-align: center; color: #666; padding: 2rem;">No CTF challenges found matching your search.</p>';
+        container.innerHTML = `
+            <div style="
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+                width: 100%;
+                margin-top: 2rem;
+            ">
+                <div style="
+                    background: #fff;
+                    border-radius: 12px;
+                    box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+                    padding: 2rem 2.5rem;
+                    text-align: center;
+                    color: #333;
+                    font-size: 1.1rem;
+                    max-width: 420px;
+                    width: 100%;
+                ">
+                    No CTF Challenges Found Matching Your Search!!
+                </div>
+            </div>
+        `;
         return;
     }
 
