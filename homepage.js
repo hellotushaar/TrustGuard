@@ -24,6 +24,15 @@
   window.switchToSignup = function(){ openModal('signup'); };
   window.switchToLogin = function(){ openModal('login'); };
 
+  window.tryDetection = function(){
+    try {
+      if (window.localStorage) {
+        localStorage.setItem('redirectAfterLogin', 'deepfake-detection');
+      }
+    } catch(_) {}
+    openModal('login');
+  };
+
   // When user completes auth, set signed-in state and route to dashboard
   window.signIn = function(e){
     if(e) e.preventDefault();
@@ -32,6 +41,12 @@
       if (window.localStorage) {
         localStorage.setItem('isSignedIn', 'true');
         if (u) localStorage.setItem('currentUser', u);
+        const redirectTarget = localStorage.getItem('redirectAfterLogin');
+        if (redirectTarget) {
+          localStorage.removeItem('redirectAfterLogin');
+          window.location.href = `dashboard.html#${redirectTarget}`;
+          return;
+        }
       }
     } catch(_) {}
   window.location.href = 'dashboard.html#authed';
@@ -43,6 +58,12 @@
       if (window.localStorage) {
         localStorage.setItem('isSignedIn', 'true');
         if (u) localStorage.setItem('currentUser', u);
+        const redirectTarget = localStorage.getItem('redirectAfterLogin');
+        if (redirectTarget) {
+          localStorage.removeItem('redirectAfterLogin');
+          window.location.href = `dashboard.html#${redirectTarget}`;
+          return;
+        }
       }
     } catch(_) {}
   window.location.href = 'dashboard.html#authed';
@@ -54,7 +75,13 @@
   });
 
   // Placeholder contact form handler to avoid errors if present
-  window.submitContactForm = function(e){ if(e) e.preventDefault(); alert('Thanks! We\'ll get back to you shortly.'); };
+window.submitContactForm = function (e) {
+    if (e) e.preventDefault(); document.getElementById('name').value = '';
+    document.getElementById('email').value = '';
+    document.getElementById('subject').value = '';
+    document.getElementById('message').value = ''; 
+    alert('Thanks! We\'ll get back to you shortly.');
+  };
 
   // Deep link support: if URL has #auth, open the login modal by default
   try {

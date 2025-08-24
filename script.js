@@ -223,7 +223,12 @@ function initializeApp() {
     appState.userPreferences = userPreferences;
 
     if (isSignedIn) {
-        showPage('dashboard');
+        const hash = window.location.hash.substring(1);
+        if (hash === 'deepfake-detection') {
+            showPage('deepfake-detection');
+        } else {
+            showPage('dashboard');
+        }
         document.getElementById('navbar').style.display = 'block';
     } else {
         showPage('landing-page');
