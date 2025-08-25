@@ -496,10 +496,7 @@ function createCTFCard(ctf) {
                 <span><i class="fas fa-trophy"></i> Max Score: ${ctf.maxScore}</span>
             </div>
             <div class="card-actions">
-                // <button class="btn btn-primary btn-small" onclick="playCTF(${ctf.id})">
-                //     <i class="fas fa-play"></i> Play
-                // </button>
-                <button class="btn btn-primary btn-small" onclick="window.open("https://cyberdefenders.org/blueteam-ctf-challenges/fakegpt", "_blank")">
+                <button class="btn btn-primary btn-small" onclick="playCTF(${ctf.id})">
                     <i class="fas fa-play"></i> Play
                 </button>
                 <button class="btn btn-secondary btn-small" onclick="viewLeaderboard(${ctf.id})">
