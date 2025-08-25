@@ -449,7 +449,7 @@ function filterKnowledge(category) {
 }
 
 function readTopic(topicId) {
-    window.open("https://n8n.io/", "_blank");
+    window.open("https://www.lancaster.ac.uk/media/lancaster-university/content-assets/documents/cyber-foundry/lcf-articles/LCFArticle-Josh-Deepfakes_WEB.pdf", "_blank");
 }
 
 function bookmarkTopic(topicId) {
