@@ -81,10 +81,10 @@ const mockData = {
         },
         {
             id: 2,
-            title: "Advanced Audio Analysis",
-            category: "advanced",
-            difficulty: "Advanced",
-            description: "Analyze audio files to detect AI-generated speech and voice cloning.",
+            title: "FakeGPT Lab",
+            category: "Analysis",
+            difficulty: "Easy",
+            description: "Analyze a malicious Chrome extension's code and behavior to identify data theft mechanisms, covert exfiltration via `<img>` tags, and anti-analysis techniques.",
             participants: 342,
             maxScore: 1500,
             estimatedTime: "2 hours"
@@ -570,63 +570,67 @@ function filterCTFs(category) {
     });
 }
 
+// function playCTF(ctfId) {
+//     const ctf = mockData.ctfChallenges.find(c => c.id === ctfId);
+//     if (!ctf) return;
+
+//     // Simple CTF simulation
+//     const questions = [
+//         {
+//             question: "What is the most common technique used to detect deepfakes?",
+//             options: ["Audio analysis", "Facial landmark detection", "Metadata analysis", "Color histogram"],
+//             correct: 1
+//         },
+//         {
+//             question: "Which of the following is a sign of a deepfake video?",
+//             options: ["Consistent lighting", "Natural blinking patterns", "Inconsistent facial expressions", "Stable audio quality"],
+//             correct: 2
+//         },
+//         {
+//             question: "What does GAN stand for in the context of deepfakes?",
+//             options: ["General Adversarial Network", "Generative Adversarial Network", "Graphic Analysis Network", "Generated AI Network"],
+//             correct: 1
+//         }
+//     ];
+
+//     let score = 0;
+//     let currentQuestion = 0;
+
+//     function askQuestion() {
+//         if (currentQuestion >= questions.length) {
+//             const finalScore = Math.round((score / questions.length) * ctf.maxScore);
+//             alert(`CTF Complete!\n\nYour Score: ${finalScore}/${ctf.maxScore}\nQuestions Correct: ${score}/${questions.length}\n\nGreat job! Your score has been recorded.`);
+//             return;
+//         }
+
+//         const q = questions[currentQuestion];
+//         const answer = prompt(
+//             `${ctf.title} - Question ${currentQuestion + 1}/${questions.length}\n\n${q.question}\n\n` +
+//             q.options.map((opt, idx) => `${idx + 1}. ${opt}`).join('\n') +
+//             '\n\nEnter your answer (1-4):'
+//         );
+
+//         if (answer === null) return; // User cancelled
+
+//         const answerIndex = parseInt(answer) - 1;
+//         if (answerIndex === q.correct) {
+//             score++;
+//             alert('Correct! Well done.');
+//         } else {
+//             alert(`Incorrect. The correct answer was: ${q.options[q.correct]}`);
+//         }
+
+//         currentQuestion++;
+//         askQuestion();
+//     }
+
+//     if (confirm(`Start "${ctf.title}"?\n\nThis CTF contains ${questions.length} questions and will test your knowledge about deepfake detection.`)) {
+//         askQuestion();
+//     }
+// }
+
 function playCTF(ctfId) {
-    const ctf = mockData.ctfChallenges.find(c => c.id === ctfId);
-    if (!ctf) return;
-
-    // Simple CTF simulation
-    const questions = [
-        {
-            question: "What is the most common technique used to detect deepfakes?",
-            options: ["Audio analysis", "Facial landmark detection", "Metadata analysis", "Color histogram"],
-            correct: 1
-        },
-        {
-            question: "Which of the following is a sign of a deepfake video?",
-            options: ["Consistent lighting", "Natural blinking patterns", "Inconsistent facial expressions", "Stable audio quality"],
-            correct: 2
-        },
-        {
-            question: "What does GAN stand for in the context of deepfakes?",
-            options: ["General Adversarial Network", "Generative Adversarial Network", "Graphic Analysis Network", "Generated AI Network"],
-            correct: 1
-        }
-    ];
-
-    let score = 0;
-    let currentQuestion = 0;
-
-    function askQuestion() {
-        if (currentQuestion >= questions.length) {
-            const finalScore = Math.round((score / questions.length) * ctf.maxScore);
-            alert(`CTF Complete!\n\nYour Score: ${finalScore}/${ctf.maxScore}\nQuestions Correct: ${score}/${questions.length}\n\nGreat job! Your score has been recorded.`);
-            return;
-        }
-
-        const q = questions[currentQuestion];
-        const answer = prompt(
-            `${ctf.title} - Question ${currentQuestion + 1}/${questions.length}\n\n${q.question}\n\n` +
-            q.options.map((opt, idx) => `${idx + 1}. ${opt}`).join('\n') +
-            '\n\nEnter your answer (1-4):'
-        );
-
-        if (answer === null) return; // User cancelled
-
-        const answerIndex = parseInt(answer) - 1;
-        if (answerIndex === q.correct) {
-            score++;
-            alert('Correct! Well done.');
-        } else {
-            alert(`Incorrect. The correct answer was: ${q.options[q.correct]}`);
-        }
-
-        currentQuestion++;
-        askQuestion();
-    }
-
-    if (confirm(`Start "${ctf.title}"?\n\nThis CTF contains ${questions.length} questions and will test your knowledge about deepfake detection.`)) {
-        askQuestion();
-    }
+    window.open("https://cyberdefenders.org/blueteam-ctf-challenges/fakegpt", "_blank");
 }
 
 function viewLeaderboard(ctfId) {
