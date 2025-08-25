@@ -82,7 +82,7 @@ const mockData = {
         {
             id: 2,
             title: "FakeGPT Lab",
-            category: "Analysis",
+            category: "Beginner",
             difficulty: "Easy",
             description: "Analyze a malicious Chrome extension's code and behavior to identify data theft mechanisms, covert exfiltration via `<img>` tags, and anti-analysis techniques.",
             participants: 342,
