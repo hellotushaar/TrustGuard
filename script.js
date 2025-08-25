@@ -448,11 +448,14 @@ function filterKnowledge(category) {
     });
 }
 
+// function readTopic(topicId) {
+//     const topic = mockData.knowledgeTopics.find(t => t.id === topicId);
+//     if (topic) {
+//         alert(`Reading "${topic.title}"...\n\nThis would open the full article content. In a real application, this would navigate to a detailed article page with comprehensive content about ${topic.title.toLowerCase()}.`);
+//     }
+// }
 function readTopic(topicId) {
-    const topic = mockData.knowledgeTopics.find(t => t.id === topicId);
-    if (topic) {
-        alert(`Reading "${topic.title}"...\n\nThis would open the full article content. In a real application, this would navigate to a detailed article page with comprehensive content about ${topic.title.toLowerCase()}.`);
-    }
+    window.open("https://www.lancaster.ac.uk/media/lancaster-university/content-assets/documents/cyber-foundry/lcf-articles/LCFArticle-Josh-Deepfakes_WEB.pdf", "_blank");
 }
 
 function bookmarkTopic(topicId) {
